@@ -71,5 +71,6 @@ the Program in return for a fee.
 int main(int argc, char **argv)
 {
 	printf("Hello world to linear freq2volt simulator. More to come!\n");
+    printf("linear anlysis");
 	return 0;
 }
