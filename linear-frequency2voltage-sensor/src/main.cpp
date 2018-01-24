@@ -64,13 +64,38 @@ the Program in return for a fee.
 */
 /*==========================END LICENSE NOTICE==========================*/  
 
-#include <stdio.h>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include "sensor-spec.h"
+#include <time.h>
+using namespace std;
 
-#include "sensor-spec.h" 
+int analyze(int a[]);
 
 int main(int argc, char **argv)
 {
-	printf("Hello world to linear freq2volt simulator. More to come!\n");
-    printf("linear anlysis");
-	return 0;
+  int a[10],j;
+  ifstream myfile("inputs.txt");
+    if(myfile.is_open())
+    {
+  for(j=0;j<8;j++)
+    myfile >> a[j];
+    }
+  analyze(a);
+  return 0;
+}
+int analyze(int a[])
+{
+  int y;
+  float output[100],m=0.0060453,c=0.09068010;
+  for(y=0;y<8;y++)
+  output[y]=((m*a[y])-c);
+  ofstream myfile ("outputs.txt");
+  myfile <<"the output voltage of the inputs are" <<"\n";
+  if (myfile.is_open()) 
+  for(y=0;y<8;y++)
+  myfile <<output[y]<<"\n"<<"";
+  myfile.close();
+  return 0;
 }
